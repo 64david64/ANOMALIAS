@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}GNSS · SismoTectoLab{% endblock %}
+
+{% block content %}
+
+<section class="page-hero compact">
+    <p class="eyebrow">Velocidades geodésicas</p>
+    <h1>Estaciones GNSS retenidas</h1>
+    <p>
+        Resumen de estaciones GNSS usadas para el análisis, con velocidades medias
+        estimadas a partir de desplazamientos acumulados durante la serie temporal.
+    </p>
+</section>
+
+<section class="section">
+    <div class="alert alert-info">
+        <h3>Lectura metodológica</h3>
+        <p>
+            Las velocidades se interpretan en el marco IGS20 / ITRF2020. Los vectores
+            residuales ayudan a observar diferencias relativas entre estaciones, sin
+            asumir deformación local definitiva.
+        </p>
+    </div>
+
+    <div id="gnssStations" class="station-list"></div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/gnss.js') }}"></script>
+{% endblock %}

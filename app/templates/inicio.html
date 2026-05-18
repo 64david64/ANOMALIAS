@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio · SismoTectoLab{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+    <div class="hero-content">
+        <p class="eyebrow hero-eyebrow">Visor geofísico-pedagógico</p>
+
+        <h1>Visor sismotectónico integrado de Colombia</h1>
+
+        <p class="hero-text">
+            Exploración de anomalías gravimétricas, gradiente horizontal de Bouguer
+            y velocidades GNSS para apoyar una interpretación sismotectónica regional.
+        </p>
+
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="{{ url_for('main.visor_2d') }}">Abrir visor 2D</a>
+            <a class="btn btn-secondary" href="{{ url_for('main.metodologia') }}">Ver metodología</a>
+        </div>
+
+        <div class="hero-meta">
+            <span class="badge">IGS20 / ITRF2020</span>
+            <span class="badge">GNSS</span>
+            <span class="badge">Bouguer</span>
+            <span class="badge">Gradiente horizontal</span>
+        </div>
+    </div>
+
+    <div class="hero-media">
+        <img src="{{ url_for('static', filename='img/portada.webp') }}" alt="Portada del visor sismotectónico">
+    </div>
+</section>
+
+<section class="section">
+    <div class="section-header">
+        <p class="eyebrow">Caso de estudio</p>
+        <h2>Una lectura ampliada del campo de velocidades geodésicas</h2>
+        <p>
+            El proyecto toma como referencia un caso de estudio existente sobre el campo
+            de velocidades geodésicas en Colombia. La intención no es replicar un producto
+            geodésico oficial, sino descomponer el proceso y dar “zoom” a un conjunto
+            acotado de estaciones GNSS, integrándolo con anomalías gravimétricas para una
+            lectura pedagógica y regional.
+        </p>
+    </div>
+
+    <div class="content-card">
+        <p>
+            Los datos GNSS fueron consultados a partir del Nevada Geodetic Laboratory,
+            y el objeto de estudio se apoya en una presentación sobre el marco de referencia
+            geodésico de Colombia y desarrollo sostenible, específicamente en el componente
+            de campo de velocidades geodésicas.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="grid-3">
+        <article class="feature-card">
+            <h3>Anomalías gravimétricas</h3>
+            <p>
+                Permiten observar variaciones regionales del campo gravitatorio y posibles
+                contrastes de densidad cortical.
+            </p>
+        </article>
+
+        <article class="feature-card">
+            <h3>Velocidades GNSS</h3>
+            <p>
+                Representan tasas medias estimadas a partir de desplazamientos acumulados
+                durante la serie temporal de cada estación retenida.
+            </p>
+        </article>
+
+        <article class="feature-card">
+            <h3>Lectura contextual</h3>
+            <p>
+                La relación entre gravedad y GNSS se interpreta por proximidad espacial,
+                no como una asociación directa punto-estación.
+            </p>
+        </article>
+    </div>
+</section>
+
+{% endblock %}

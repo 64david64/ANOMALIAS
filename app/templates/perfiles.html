@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Perfiles W-E · SismoTectoLab{% endblock %}
+
+{% block content %}
+
+<section class="page-hero compact">
+    <p class="eyebrow">Perfiles espaciales</p>
+    <h1>Perfiles W-E</h1>
+    <p>
+        Lectura transversal aproximada de la anomalía de Bouguer, altura y gradiente
+        sobre latitudes de referencia.
+    </p>
+</section>
+
+<section class="profile-layout section">
+    <aside class="profile-selector">
+        <h2>Perfiles</h2>
+        <p class="text-muted">
+            Selecciona un perfil para visualizarlo.
+        </p>
+        <div id="profileList" class="profile-list"></div>
+    </aside>
+
+    <div class="profile-chart-card">
+        <div id="profileChart" class="profile-chart loading-box">
+            <div>
+                <div class="spinner"></div>
+                <p>Cargando perfiles...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="{{ url_for('static', filename='js/perfiles.js') }}"></script>
+{% endblock %}

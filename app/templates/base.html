@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SismoTectoLab{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <nav class="navbar">
+                <a href="{{ url_for('main.inicio') }}" class="brand">
+                    <span class="brand-mark">ST</span>
+                    <span class="brand-title">
+                        <span>SismoTectoLab</span>
+                        <span>Gravedad · GNSS · Colombia</span>
+                    </span>
+                </a>
+
+                <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+                    ☰
+                </button>
+
+                <div class="nav-links" id="navLinks">
+                    <a href="{{ url_for('main.inicio') }}">Inicio</a>
+                    <a href="{{ url_for('main.marco_conceptual') }}">Marco conceptual</a>
+                    <a href="{{ url_for('main.metodologia') }}">Metodología</a>
+                    <a href="{{ url_for('main.visor_2d') }}">Visor 2D</a>
+                    <a href="{{ url_for('main.visor_3d') }}">Visor 3D</a>
+                    <a href="{{ url_for('main.perfiles') }}">Perfiles</a>
+                    <a href="{{ url_for('main.gnss') }}">GNSS</a>
+                    <a href="{{ url_for('main.interpretacion') }}">Interpretación</a>
+                    <a href="{{ url_for('main.acerca') }}">Acerca</a>
+                </div>
+            </nav>
+        </header>
+
+        <main class="page">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-content container">
+                <div>
+                    <strong>SismoTectoLab</strong>
+                    <span>Visor académico de integración gravimétrica y GNSS.</span>
+                </div>
+                <div>
+                    Relación gravedad-GNSS contextual por proximidad espacial.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

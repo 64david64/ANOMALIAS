@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Acerca · SismoTectoLab{% endblock %}
+
+{% block content %}
+
+<section class="page-hero compact">
+    <p class="eyebrow">Proyecto</p>
+    <h1>Acerca del visor</h1>
+    <p>
+        SismoTectoLab es un visor académico orientado a explicar de forma pedagógica
+        la integración entre datos gravimétricos y observaciones GNSS.
+    </p>
+</section>
+
+<section class="section">
+    <div class="content-card">
+        <h2>Alcance</h2>
+        <p>
+            El visor no busca reemplazar un producto geodésico, geológico o sismotectónico
+            oficial. Su propósito es descomponer un caso de estudio existente y mostrar,
+            con mayor detalle pedagógico, cómo se relacionan anomalías gravimétricas,
+            gradiente horizontal y velocidades GNSS.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="content-card">
+        <h2>Fuentes y créditos</h2>
+        <ul class="credits-list">
+            <li>
+                <strong>Datos GNSS</strong>
+                <span>Nevada Geodetic Laboratory, GPS Networks Map.</span>
+            </li>
+            <li>
+                <strong>Referencia conceptual principal</strong>
+                <span>Presentación sobre Marco de Referencia Geodésico de Colombia y Desarrollo Sostenible, componente de campo de velocidades geodésicas.</span>
+            </li>
+            <li>
+                <strong>Imagen conceptual de Bouguer</strong>
+                <span>Geovirtual2, material educativo sobre anomalía de Bouguer.</span>
+            </li>
+            <li>
+                <strong>Imagen conceptual de GNSS</strong>
+                <span>Toposervis, material divulgativo sobre GNSS.</span>
+            </li>
+        </ul>
+    </div>
+</section>
+
+{% endblock %}

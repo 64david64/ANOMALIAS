@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Metodología · SismoTectoLab{% endblock %}
+
+{% block content %}
+
+<section class="page-hero compact">
+    <p class="eyebrow">Proceso</p>
+    <h1>Metodología</h1>
+    <p>
+        Flujo de procesamiento usado para integrar datos gravimétricos y GNSS en una
+        lectura sismotectónica contextual.
+    </p>
+</section>
+
+<section class="section">
+    <div class="workflow">
+        <div class="workflow-step">
+            <span>01</span>
+            <h3>Datos de entrada</h3>
+            <p>Coordenadas, altura, anomalía gravimétrica y desplazamientos GNSS acumulados.</p>
+        </div>
+
+        <div class="workflow-step">
+            <span>02</span>
+            <h3>Depuración</h3>
+            <p>Organización de registros, validación de estaciones y separación de datos retenidos.</p>
+        </div>
+
+        <div class="workflow-step">
+            <span>03</span>
+            <h3>Correcciones gravimétricas</h3>
+            <p>Cálculo de anomalía de aire libre y anomalía de Bouguer como variables derivadas.</p>
+        </div>
+
+        <div class="workflow-step">
+            <span>04</span>
+            <h3>Interpolación espacial</h3>
+            <p>Construcción de superficies continuas para visualizar patrones regionales.</p>
+        </div>
+
+        <div class="workflow-step">
+            <span>05</span>
+            <h3>Gradiente horizontal</h3>
+            <p>Identificación de zonas de cambio brusco en la anomalía de Bouguer.</p>
+        </div>
+
+        <div class="workflow-step">
+            <span>06</span>
+            <h3>Velocidades GNSS</h3>
+            <p>Conversión de desplazamientos acumulados a velocidades medias en mm/año.</p>
+        </div>
+
+        <div class="workflow-step">
+            <span>07</span>
+            <h3>Integración contextual</h3>
+            <p>Superposición espacial entre anomalías, gradiente y estaciones GNSS retenidas.</p>
+        </div>
+
+        <div class="workflow-step">
+            <span>08</span>
+            <h3>Interpretación</h3>
+            <p>Lectura regional de posibles lineamientos y zonas de interés estructural.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="content-card">
+        <h2>Relación contextual entre gravedad y GNSS</h2>
+        <p>
+            Los puntos gravimétricos no se consideran pertenecientes directamente a una
+            estación GNSS. Su relación se maneja únicamente por proximidad espacial y
+            como apoyo regional para interpretar patrones de contraste gravimétrico y
+            deformación geodésica.
+        </p>
+    </div>
+</section>
+
+{% endblock %}

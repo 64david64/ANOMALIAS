@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Visor 3D · SismoTectoLab{% endblock %}
+
+{% block content %}
+
+<section class="page-hero compact">
+    <p class="eyebrow">Superficie 3D</p>
+    <h1>Visor 3D</h1>
+    <p>
+        Exploración tridimensional simplificada de la grilla procesada. Esta vista
+        funciona como apoyo visual y no reemplaza las figuras oficiales de MATLAB.
+    </p>
+</section>
+
+<section class="viewer-3d-layout section">
+    <div class="plot-card">
+        <div id="plot3d" class="plot-container loading-box">
+            <div>
+                <div class="spinner"></div>
+                <p>Cargando superficie 3D...</p>
+            </div>
+        </div>
+    </div>
+
+    <aside class="control-panel">
+        <h2>Variable</h2>
+        <div class="control-group">
+            <label for="zVariable">Altura / Z</label>
+            <select id="zVariable">
+                <option value="bouguer_mgal">Anomalía de Bouguer</option>
+                <option value="aire_libre_mgal">Anomalía de aire libre</option>
+                <option value="gradiente_mgal_km">Gradiente horizontal</option>
+                <option value="altura_m">Altura</option>
+            </select>
+        </div>
+
+        <p class="text-muted">
+            La vista 3D usa una muestra de la grilla para mantener el rendimiento del navegador.
+        </p>
+    </aside>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<script src="{{ url_for('static', filename='js/visor-3d.js') }}"></script>
+{% endblock %}

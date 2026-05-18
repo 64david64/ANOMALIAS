@@ -1,0 +1,66 @@
+{
+  "proyecto": "SismoTectoLab",
+  "version_codigo": "V7",
+  "fecha_generacion": "2026-05-17 23:39:11",
+  "marco_referencia_gnss": "IGS20 / ITRF2020",
+  "modo_gnss": "desplazamiento_acumulado",
+  "modo_vector_mapa": "residual_media_red",
+  "tipo_tratamiento_gravedad": "requiere_correcciones_simples",
+  "relacion_gravedad_gnss": "contextual_por_proximidad_no_asociacion_directa",
+  "nota_relacion_gravedad_gnss": "Las estaciones GNSS y los puntos gravimetricos se comparan por proximidad espacial. No se interpreta que un punto gravimetrico pertenezca directamente a una estacion GNSS.",
+  "n_estaciones_gnss_retenidas": 6,
+  "estaciones_gnss_retenidas": [
+    "BER1",
+    "MEDE",
+    "NEV1",
+    "PER2",
+    "TUNA",
+    "VIVI"
+  ],
+  "n_estaciones_gnss_excluidas_qc": 3,
+  "nota_estaciones_excluidas": "Las estaciones excluidas por QC temporal/cinematico no se exportan en tablas oficiales de analisis contextual. Sus puntos gravimetricos se conservan en la grilla regional.",
+  "umbrales_distancia_km": {
+    "local": 50,
+    "contextual": 100,
+    "regional": 150
+  },
+  "umbrales_gradiente_mgal_km": {
+    "p75_probable": 14.347301290854828,
+    "p90_definido": 21.139031689896306,
+    "p95_alto": 25.005427953340828
+  },
+  "archivos_oficiales": [
+    "grilla_bouguer_gradiente.csv",
+    "gnss_resumen_estaciones.csv",
+    "puntos_gravimetricos_clasificados.csv",
+    "metadata_variables.json",
+    "figuras/"
+  ],
+  "variables": {
+    "gravity_anomaly_base_mgal": {
+      "nombre": "Anomalia gravimetrica base",
+      "unidad": "mGal",
+      "descripcion": "Dato gravimetrico original del insumo, conservado sin modificacion."
+    },
+    "aire_libre_mgal": {
+      "nombre": "Anomalia de aire libre simple",
+      "unidad": "mGal",
+      "descripcion": "Variable derivada a partir del dato base y la correccion de aire libre por altura."
+    },
+    "bouguer_mgal": {
+      "nombre": "Anomalia de Bouguer simple",
+      "unidad": "mGal",
+      "descripcion": "Variable derivada despues de aplicar correccion de aire libre y placa de Bouguer simple."
+    },
+    "gradiente_mgal_km": {
+      "nombre": "Gradiente horizontal de Bouguer",
+      "unidad": "mGal/km",
+      "descripcion": "Gradiente calculado sobre la grilla interpolada de Bouguer usando conversion aproximada de grados a kilometros."
+    },
+    "vel_horizontal_res_mm_yr": {
+      "nombre": "Velocidad horizontal residual GNSS",
+      "unidad": "mm/año",
+      "descripcion": "Magnitud horizontal despues de remover la media de la red GNSS retenida. Util para visualizacion diferencial en IGS20/ITRF2020."
+    }
+  }
+}

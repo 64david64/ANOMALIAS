@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Marco conceptual · SismoTectoLab{% endblock %}
+
+{% block content %}
+
+<section class="page-hero compact">
+    <p class="eyebrow">Fundamentos</p>
+    <h1>Marco conceptual</h1>
+    <p>
+        Conceptos básicos para interpretar anomalías gravimétricas, gradiente horizontal
+        y velocidades GNSS dentro de una lectura sismotectónica regional.
+    </p>
+</section>
+
+<section class="section two-column">
+    <div class="content-card">
+        <h2>Anomalía de Bouguer</h2>
+        <p>
+            La anomalía de Bouguer permite analizar variaciones del campo gravitatorio
+            considerando correcciones asociadas a la altura y al efecto de la masa
+            topográfica. En este visor se emplea para resaltar contrastes regionales
+            compatibles con cambios de densidad cortical.
+        </p>
+        <p class="method-note">
+            La anomalía de Bouguer se interpreta como una superficie regional de apoyo,
+            no como una medición puntual definitiva de estructuras tectónicas.
+        </p>
+    </div>
+
+    <figure class="image-card">
+        <img src="{{ url_for('static', filename='img/concepto_bouguer.png') }}" alt="Concepto de anomalía de Bouguer">
+        <figcaption>
+            Fuente: Geovirtual2, material educativo sobre anomalía de Bouguer.
+        </figcaption>
+    </figure>
+</section>
+
+<section class="section two-column reverse">
+    <div class="content-card">
+        <h2>GNSS y velocidades geodésicas</h2>
+        <p>
+            Las estaciones GNSS registran cambios de posición en el tiempo. A partir
+            de la serie temporal de cada estación se pueden estimar velocidades en
+            las componentes Este, Norte y vertical.
+        </p>
+        <p>
+            En este proyecto se trabaja con desplazamientos acumulados durante la
+            serie temporal, transformados en velocidades medias expresadas en mm/año.
+        </p>
+        <p class="method-note">
+            Las velocidades se interpretan en el marco IGS20 / ITRF2020.
+        </p>
+    </div>
+
+    <figure class="image-card">
+        <img src="{{ url_for('static', filename='img/concepto_gnss.png') }}" alt="Concepto de sistema GNSS">
+        <figcaption>
+            Fuente: Toposervis, material divulgativo sobre GNSS.
+        </figcaption>
+    </figure>
+</section>
+
+<section class="section">
+    <div class="content-card">
+        <h2>Gradiente horizontal de Bouguer</h2>
+        <p>
+            El gradiente horizontal representa qué tan rápido cambia la anomalía de
+            Bouguer en el espacio. Las zonas de alto gradiente pueden indicar contrastes
+            laterales importantes y se interpretan como posibles lineamientos
+            gravimétricos o áreas de interés estructural.
+        </p>
+        <p class="warning-note">
+            En este visor no se declaran fallas activas. Se identifican zonas de interés
+            que requieren contraste con información geológica y sismológica adicional.
+        </p>
+    </div>
+</section>
+
+{% endblock %}
