@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Resultados · SismoTectoLab{% endblock %}
+
+{% block content %}
+
+<section class="page-hero compact results-hero">
+    <p class="eyebrow">Resultados</p>
+    <h1>Galería de resultados geofísicos</h1>
+    <p>
+        Visualización e interpretación de las figuras oficiales generadas durante
+        el procesamiento MATLAB. Cada resultado se presenta como apoyo para una
+        lectura sismotectónica regional y contextual.
+    </p>
+</section>
+
+<section class="section results-intro-section">
+    <div class="results-intro-card">
+        <div>
+            <h2>Lectura integrada de resultados</h2>
+            <p>
+                Las figuras de esta sección resumen el comportamiento espacial de
+                las anomalías gravimétricas, el gradiente horizontal de Bouguer,
+                los perfiles W-E y las velocidades GNSS retenidas.
+            </p>
+        </div>
+
+        <div class="results-warning">
+            <strong>Alcance interpretativo</strong>
+            <p>
+                Los lineamientos mostrados son potenciales o contextuales. No se
+                interpretan como fallas activas confirmadas sin contraste geológico
+                y sismológico adicional.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section results-gallery-section">
+    <div class="results-grid">
+        {% for figure in figures %}
+        <article class="result-card">
+            <div class="result-image">
+                <a href="{{ figure.url }}" target="_blank" rel="noopener noreferrer">
+                    <img src="{{ figure.url }}" alt="{{ figure.title }}">
+                </a>
+            </div>
+
+            <div class="result-body">
+                <div class="result-meta">
+                    <span>{{ figure.code }}</span>
+                    <span>{{ figure.variable }}</span>
+                </div>
+
+                <h2>{{ figure.title }}</h2>
+
+                <p class="result-description">
+                    {{ figure.description }}
+                </p>
+
+                <div class="result-interpretation">
+                    <h3>Lectura sugerida</h3>
+                    <p>{{ figure.interpretation }}</p>
+                </div>
+
+                <div class="result-caution">
+                    <strong>Cautela:</strong> {{ figure.caution }}
+                </div>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section results-summary-section">
+    <div class="closing-concept-card compact-results-closing">
+        <h2>Conclusión de lectura</h2>
+        <p>
+            El conjunto de figuras permite observar cómo las anomalías de gravedad,
+            el gradiente horizontal de Bouguer y las velocidades GNSS retenidas
+            aportan evidencias complementarias para reconocer zonas de interés
+            estructural. La integración se realiza por superposición espacial y
+            análisis contextual, no por asociación directa entre punto gravimétrico
+            y estación GNSS.
+        </p>
+    </div>
+</section>
+
+{% endblock %}

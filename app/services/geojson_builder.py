@@ -1,5 +1,7 @@
 ﻿def _to_float(value):
     try:
+        if value in (None, ""):
+            return None
         return float(value)
     except (TypeError, ValueError):
         return None
@@ -24,80 +26,46 @@ def _records_from_input(data):
     return []
 
 
-def _get_value(record, candidates):
-    for name in candidates:
-        if name in record and record[name] not in ("", None):
-            return record[name]
-    return None
-
-
-def dataframe_to_geojson(
-    data,
-    lon_field="lon",
-    lat_field="lat",
-    lon_col=None,
-    lat_col=None,
-    properties=None,
-):
-    """
-    Convierte registros con coordenadas a GeoJSON.
-
-    El nombre se conserva por compatibilidad, pero no requiere pandas.
-    """
+def dataframe_to_geojson(data, lon_field="lon", lat_field="lat", **kwargs):
     records = _records_from_input(data)
     features = []
 
-    lon_candidates = [
-        lon_col,
-        lon_field,
-        "lon",
-        "longitud",
-        "longitude",
-        "x",
-        "X",
-        "LON",
-        "Lon",
-    ]
-
-    lat_candidates = [
-        lat_col,
-        lat_field,
-        "lat",
-        "latitud",
-        "latitude",
-        "y",
-        "Y",
-        "LAT",
-        "Lat",
-    ]
-
-    lon_candidates = [item for item in lon_candidates if item]
-    lat_candidates = [item for item in lat_candidates if item]
-
     for record in records:
-        lon = _to_float(_get_value(record, lon_candidates))
-        lat = _to_float(_get_value(record, lat_candidates))
+        lon = _to_float(
+            record.get(lon_field)
+            or record.get("longitud")
+            or record.get("longitude")
+            or record.get("Lon")
+            or record.get("LON")
+            or record.get("x")
+            or record.get("X")
+        )
+
+        lat = _to_float(
+            record.get(lat_field)
+            or record.get("latitud")
+            or record.get("latitude")
+            or record.get("Lat")
+            or record.get("LAT")
+            or record.get("y")
+            or record.get("Y")
+        )
 
         if lon is None or lat is None:
             continue
-
-        if properties:
-            props = {key: record.get(key) for key in properties if key in record}
-        else:
-            props = dict(record)
 
         features.append({
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [lon, lat],
+                "coordinates": [lon, lat]
             },
-            "properties": props,
+            "properties": dict(record)
         })
 
     return {
         "type": "FeatureCollection",
-        "features": features,
+        "features": features
     }
 
 
@@ -106,72 +74,94 @@ def gnss_to_geojson(data):
     features = []
 
     for record in records:
-        lon = _to_float(_get_value(record, [
-            "lon",
-            "longitud",
-            "station_lon",
-            "gnss_lon",
-            "X",
-        ]))
+        lon = _to_float(
+            record.get("lon")
+            or record.get("longitud")
+            or record.get("station_lon")
+            or record.get("gnss_lon")
+            or record.get("X")
+        )
 
-        lat = _to_float(_get_value(record, [
-            "lat",
-            "latitud",
-            "station_lat",
-            "gnss_lat",
-            "Y",
-        ]))
+        lat = _to_float(
+            record.get("lat")
+            or record.get("latitud")
+            or record.get("station_lat")
+            or record.get("gnss_lat")
+            or record.get("Y")
+        )
 
         if lon is None or lat is None:
             continue
 
-        props = dict(record)
+        properties = dict(record)
 
-        vel_e = _to_float(_get_value(record, [
-            "vel_e_residual_mm_yr",
-            "vel_e_mm_yr",
-            "east_mm_yr",
-            "e_mm_yr",
-            "velocidad_este_mm_yr",
-        ]))
+        vel_e_abs = _to_float(
+            record.get("vel_e_abs_mm_yr")
+            or record.get("vel_e_mm_yr")
+            or record.get("east_mm_yr")
+            or record.get("e_mm_yr")
+        )
 
-        vel_n = _to_float(_get_value(record, [
-            "vel_n_residual_mm_yr",
-            "vel_n_mm_yr",
-            "north_mm_yr",
-            "n_mm_yr",
-            "velocidad_norte_mm_yr",
-        ]))
+        vel_n_abs = _to_float(
+            record.get("vel_n_abs_mm_yr")
+            or record.get("vel_n_mm_yr")
+            or record.get("north_mm_yr")
+            or record.get("n_mm_yr")
+        )
 
-        vel_u = _to_float(_get_value(record, [
-            "vel_u_mm_yr",
-            "vel_up_mm_yr",
-            "up_mm_yr",
-            "u_mm_yr",
-            "velocidad_up_mm_yr",
-        ]))
+        vel_u_abs = _to_float(
+            record.get("vel_u_abs_mm_yr")
+            or record.get("vel_up_mm_yr")
+            or record.get("vel_u_mm_yr")
+            or record.get("up_mm_yr")
+            or record.get("u_mm_yr")
+        )
 
-        if vel_e is not None:
-            props["vel_e_visual"] = vel_e
+        vel_e_res = _to_float(
+            record.get("vel_e_res_mm_yr")
+            or record.get("vel_e_residual_mm_yr")
+        )
 
-        if vel_n is not None:
-            props["vel_n_visual"] = vel_n
+        vel_n_res = _to_float(
+            record.get("vel_n_res_mm_yr")
+            or record.get("vel_n_residual_mm_yr")
+        )
 
-        if vel_u is not None:
-            props["vel_u_visual"] = vel_u
+        vel_u_res = _to_float(
+            record.get("vel_u_res_mm_yr")
+            or record.get("vel_u_residual_mm_yr")
+        )
+
+        if vel_e_abs is not None:
+            properties["vel_e_abs_visual"] = vel_e_abs
+
+        if vel_n_abs is not None:
+            properties["vel_n_abs_visual"] = vel_n_abs
+
+        if vel_u_abs is not None:
+            properties["vel_u_abs_visual"] = vel_u_abs
+
+        if vel_e_res is not None:
+            properties["vel_e_res_visual"] = vel_e_res
+
+        if vel_n_res is not None:
+            properties["vel_n_res_visual"] = vel_n_res
+
+        if vel_u_res is not None:
+            properties["vel_u_res_visual"] = vel_u_res
 
         features.append({
             "type": "Feature",
             "geometry": {
                 "type": "Point",
-                "coordinates": [lon, lat],
+                "coordinates": [lon, lat]
             },
-            "properties": props,
+            "properties": properties
         })
 
     return {
         "type": "FeatureCollection",
-        "features": features,
+        "features": features
     }
 
 

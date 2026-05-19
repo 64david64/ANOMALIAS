@@ -4,26 +4,122 @@
 
 {% block content %}
 
-<section class="page-hero compact">
+<section class="page-hero compact interpretation-page-hero">
     <p class="eyebrow">Lectura integrada</p>
     <h1>Interpretación sismotectónica</h1>
     <p>
-        Integración contextual de anomalías gravimétricas, gradiente horizontal de Bouguer
-        y velocidades GNSS retenidas.
+        Integración contextual de anomalías gravimétricas, gradiente horizontal
+        de Bouguer y velocidades GNSS retenidas para una lectura regional de
+        posibles zonas de interés estructural.
     </p>
 </section>
 
-<section class="section">
-    <div class="interpretation-hero">
-        <h2>La integración es contextual, no causal directa</h2>
+<section class="section interpretation-hero-section">
+    <div class="interpretation-hero-panel">
+        <div>
+            <p class="interpretation-kicker">Principio metodológico</p>
+            <h2>La integración es contextual, no causal directa</h2>
+            <p>
+                Las zonas donde coinciden gradientes gravimétricos altos con cambios
+                relativos en vectores GNSS se consideran áreas de interés estructural.
+                No se declaran fallas activas sin contraste geológico y sismológico
+                adicional.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section interpretation-cards-section">
+    <div class="section-header compact-header">
+        <p class="eyebrow">Componentes de lectura</p>
+        <h2>¿Cómo se interpreta el resultado?</h2>
         <p>
-            Las zonas donde coinciden gradientes gravimétricos altos con cambios relativos
-            en vectores GNSS se consideran áreas de interés estructural. No se declaran
-            fallas activas sin contraste geológico y sismológico adicional.
+            Cada componente del visor aporta una parte distinta de la lectura:
+            gravedad, gradiente, GNSS e integración contextual.
         </p>
     </div>
 
-    <div id="interpretationCards" class="interpretation-grid"></div>
+    <div id="interpretationCards" class="interpretation-card-grid">
+        <article class="interpretation-info-card">
+            <span>Gravedad</span>
+            <h3>Anomalías gravimétricas</h3>
+            <p>
+                Permiten observar diferencias entre el campo gravitatorio real
+                y un modelo de referencia.
+            </p>
+        </article>
+
+        <article class="interpretation-info-card">
+            <span>Contrastes</span>
+            <h3>Gradiente horizontal</h3>
+            <p>
+                Resalta zonas donde la anomalía de Bouguer cambia rápidamente.
+            </p>
+        </article>
+
+        <article class="interpretation-info-card">
+            <span>Geodesia</span>
+            <h3>Velocidades GNSS</h3>
+            <p>
+                Representan cambios de posición durante una serie temporal.
+            </p>
+        </article>
+
+        <article class="interpretation-info-card">
+            <span>Integración</span>
+            <h3>Lectura contextual</h3>
+            <p>
+                Relaciona las variables por superposición espacial, sin asumir
+                causalidad directa.
+            </p>
+        </article>
+    </div>
+</section>
+
+<section class="section interpretation-rules-section">
+    <div class="section-header compact-header">
+        <p class="eyebrow">Criterios de cautela</p>
+        <h2>Reglas de interpretación usadas en el visor</h2>
+    </div>
+
+    <div id="interpretationRules" class="interpretation-rules-grid">
+        <article class="interpretation-rule-card">
+            <h3>No declarar fallas activas sin contraste</h3>
+            <p>
+                Las zonas de alto gradiente se presentan como lineamientos
+                potenciales o áreas de interés estructural.
+            </p>
+        </article>
+
+        <article class="interpretation-rule-card">
+            <h3>No asociar directamente gravedad y GNSS</h3>
+            <p>
+                Los puntos gravimétricos y las estaciones GNSS se relacionan por
+                proximidad espacial y lectura contextual.
+            </p>
+        </article>
+
+        <article class="interpretation-rule-card">
+            <h3>Interpretar a escala regional</h3>
+            <p>
+                El visor tiene propósito académico y pedagógico. No reemplaza
+                un estudio geofísico oficial.
+            </p>
+        </article>
+    </div>
+</section>
+
+<section class="section interpretation-closing-section">
+    <div class="interpretation-closing-card">
+        <p class="eyebrow">Síntesis</p>
+        <h2>Lectura final del visor</h2>
+        <p>
+            SismoTectoLab permite explorar cómo las anomalías gravimétricas, el
+            gradiente horizontal y las velocidades GNSS pueden leerse en conjunto
+            para reconocer posibles zonas de interés estructural. La interpretación
+            se mantiene como una aproximación regional, pedagógica y contextual.
+        </p>
+    </div>
 </section>
 
 {% endblock %}

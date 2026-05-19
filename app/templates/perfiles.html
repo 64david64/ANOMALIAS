@@ -2,39 +2,75 @@
 
 {% block title %}Perfiles W-E · SismoTectoLab{% endblock %}
 
+{% block extra_head %}
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+{% endblock %}
+
 {% block content %}
 
 <section class="page-hero compact">
-    <p class="eyebrow">Perfiles espaciales</p>
-    <h1>Perfiles W-E</h1>
+    <p class="eyebrow">Lectura espacial</p>
+    <h1>Perfiles W–E</h1>
     <p>
-        Lectura transversal aproximada de la anomalía de Bouguer, altura y gradiente
-        sobre latitudes de referencia.
+        Comparación de la anomalía de Bouguer, la topografía y el gradiente horizontal
+        a lo largo de perfiles oeste-este definidos por latitudes de referencia.
     </p>
 </section>
 
-<section class="profile-layout section">
-    <aside class="profile-selector">
-        <h2>Perfiles</h2>
-        <p class="text-muted">
-            Selecciona un perfil para visualizarlo.
+<section class="profiles-layout">
+    <aside class="profile-panel">
+        <h2>Perfiles disponibles</h2>
+        <p>
+            Cada perfil toma la latitud disponible más cercana en la grilla procesada.
         </p>
-        <div id="profileList" class="profile-list"></div>
+
+        <div id="profileButtons" class="profile-list">
+            <button class="profile-btn active" disabled>Cargando perfiles...</button>
+        </div>
+
+        <div id="profileStatus" class="small-status">
+            Cargando perfiles...
+        </div>
     </aside>
 
-    <div class="profile-chart-card">
-        <div id="profileChart" class="profile-chart loading-box">
+    <section class="profile-visual-card">
+        <div class="map-toolbar">
             <div>
-                <div class="spinner"></div>
-                <p>Cargando perfiles...</p>
+                <h2 id="profileTitle">Perfil W–E</h2>
+                <p id="profileSubtitle">
+                    Cargando información del perfil...
+                </p>
             </div>
         </div>
+
+        <div id="profileChart" class="profile-chart">
+            <div class="loading-box">
+                <div>
+                    <div class="spinner"></div>
+                    <p>Cargando perfiles...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<section class="section profiles-note-section">
+    <div class="content-card">
+        <h2>Lectura interpretativa</h2>
+        <p>
+            Los perfiles permiten comparar cambios longitudinales de la anomalía de
+            Bouguer con la topografía. Esta lectura ayuda a reconocer patrones regionales
+            de contraste gravimétrico y posibles zonas de interés estructural.
+        </p>
+        <p class="method-note">
+            Estos perfiles no representan cortes geológicos directos; son una herramienta
+            de lectura espacial construida a partir de la grilla interpolada.
+        </p>
     </div>
 </section>
 
 {% endblock %}
 
 {% block scripts %}
-<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <script src="{{ url_for('static', filename='js/perfiles.js') }}"></script>
 {% endblock %}

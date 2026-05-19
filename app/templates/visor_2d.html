@@ -6,68 +6,90 @@
 <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-p4NxAoJBhIINfQvS+2DH+O23D4hAuA+S7bAMrN4Q7tk="
-    crossorigin=""
->
+/>
 {% endblock %}
 
 {% block content %}
 
-<section class="page-hero compact">
-    <p class="eyebrow">Exploración espacial</p>
-    <h1>Visor 2D</h1>
-    <p>
-        Visualización interactiva de estaciones GNSS, puntos gravimétricos y capas
-        derivadas del procesamiento.
-    </p>
-</section>
-
-<section class="map-layout">
-    <aside class="side-panel">
+<section class="viewer-page">
+    <aside class="viewer-sidebar">
         <h2>Capas</h2>
 
         <div class="layer-control">
             <label>
                 <input type="checkbox" id="layer-gnss" checked>
-                <span>Estaciones GNSS retenidas</span>
+                Estaciones GNSS retenidas
+            </label>
+
+            <label>
+                <input type="checkbox" id="layer-vectors" checked>
+                Vectores GNSS residuales
             </label>
 
             <label>
                 <input type="checkbox" id="layer-gravity-points">
-                <span>Puntos gravimétricos clasificados</span>
+                Puntos gravimétricos clasificados
             </label>
 
             <label>
                 <input type="checkbox" id="layer-grid">
-                <span>Grilla procesada</span>
+                Grilla procesada
             </label>
+        </div>
+
+        <div class="panel-section">
+            <label for="gridVariableSelect" class="panel-label">
+                Variable de la grilla
+            </label>
+
+            <select id="gridVariableSelect" class="panel-select">
+                <option value="gradiente_mgal_km" selected>Gradiente horizontal [mGal/km]</option>
+                <option value="bouguer_mgal">Anomalía de Bouguer [mGal]</option>
+                <option value="aire_libre_mgal">Anomalía de aire libre [mGal]</option>
+                <option value="altura_m">Altura [m]</option>
+                <option value="gravity_anomaly_base_mgal">Anomalía base [mGal]</option>
+            </select>
+
+            <div id="gridVariableInfo" class="variable-info">
+                El gradiente horizontal resalta zonas donde la anomalía de Bouguer cambia rápidamente.
+            </div>
+
+            <div id="gridLegend" class="grid-legend">
+                <div class="legend-title">Leyenda</div>
+                <div class="legend-gradient"></div>
+                <div class="legend-values">
+                    <span id="legendMin">mín</span>
+                    <span id="legendMax">máx</span>
+                </div>
+            </div>
         </div>
 
         <div class="panel-note">
             <strong>Nota:</strong>
-            la relación entre puntos gravimétricos y estaciones GNSS se interpreta de
-            forma contextual, no como asociación directa.
+            la relación entre puntos gravimétricos y estaciones GNSS se interpreta
+            de forma contextual, no como asociación directa.
+        </div>
+
+        <div id="mapStatus" class="map-status">
+            Cargando capas del visor...
         </div>
     </aside>
 
-    <div class="viewer-map-card">
+    <section class="viewer-map-card">
         <div class="map-toolbar">
             <div>
                 <h2>Mapa interactivo</h2>
-                <p>Capas derivadas de MATLAB y estaciones GNSS retenidas.</p>
+                <p>Estaciones GNSS retenidas y capas derivadas del procesamiento MATLAB.</p>
             </div>
         </div>
+
         <div id="map" class="map-container"></div>
-    </div>
+    </section>
 </section>
 
 {% endblock %}
 
 {% block scripts %}
-<script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-    crossorigin=""
-></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="{{ url_for('static', filename='js/visor-2d.js') }}"></script>
 {% endblock %}

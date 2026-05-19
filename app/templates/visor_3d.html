@@ -2,48 +2,71 @@
 
 {% block title %}Visor 3D · SismoTectoLab{% endblock %}
 
+{% block extra_head %}
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+{% endblock %}
+
 {% block content %}
 
 <section class="page-hero compact">
-    <p class="eyebrow">Superficie 3D</p>
-    <h1>Visor 3D</h1>
+    <p class="eyebrow">Visualización tridimensional</p>
+    <h1>Volumen cortical 3D</h1>
     <p>
-        Exploración tridimensional simplificada de la grilla procesada. Esta vista
-        funciona como apoyo visual y no reemplaza las figuras oficiales de MATLAB.
+        Exploración tridimensional de la superficie topográfica y su relación visual
+        con variables gravimétricas derivadas del procesamiento MATLAB.
     </p>
 </section>
 
-<section class="viewer-3d-layout section">
-    <div class="plot-card">
-        <div id="plot3d" class="plot-container loading-box">
-            <div>
-                <div class="spinner"></div>
-                <p>Cargando superficie 3D...</p>
-            </div>
-        </div>
-    </div>
+<section class="viewer3d-layout">
+    <aside class="viewer3d-panel">
+        <h2>Configuración</h2>
 
-    <aside class="control-panel">
-        <h2>Variable</h2>
-        <div class="control-group">
-            <label for="zVariable">Altura / Z</label>
-            <select id="zVariable">
-                <option value="bouguer_mgal">Anomalía de Bouguer</option>
-                <option value="aire_libre_mgal">Anomalía de aire libre</option>
-                <option value="gradiente_mgal_km">Gradiente horizontal</option>
-                <option value="altura_m">Altura</option>
+        <div class="panel-section">
+            <label for="surfaceColorVariable" class="panel-label">
+                Variable de color
+            </label>
+
+            <select id="surfaceColorVariable" class="panel-select">
+                <option value="bouguer_mgal" selected>Anomalía de Bouguer [mGal]</option>
+                <option value="aire_libre_mgal">Anomalía de aire libre [mGal]</option>
+                <option value="gradiente_mgal_km">Gradiente horizontal [mGal/km]</option>
+                <option value="altura_m">Altura [m]</option>
+                <option value="gravity_anomaly_base_mgal">Anomalía base [mGal]</option>
             </select>
         </div>
 
-        <p class="text-muted">
-            La vista 3D usa una muestra de la grilla para mantener el rendimiento del navegador.
-        </p>
+        <div class="panel-note">
+            <strong>Nota:</strong>
+            la escala vertical se maneja de forma fija para mejorar la lectura visual
+            del modelo. No se interpreta como una medición volumétrica exacta.
+        </div>
+
+        <div id="surfaceStatus" class="small-status">
+            Cargando superficie 3D...
+        </div>
     </aside>
+
+    <section class="viewer3d-card">
+        <div class="map-toolbar">
+            <div>
+                <h2>Superficie 3D</h2>
+                <p>Altura como superficie y variable gravimétrica como color.</p>
+            </div>
+        </div>
+
+        <div id="plot3d" class="plot-container">
+            <div class="loading-box">
+                <div>
+                    <div class="spinner"></div>
+                    <p>Cargando visor 3D...</p>
+                </div>
+            </div>
+        </div>
+    </section>
 </section>
 
 {% endblock %}
 
 {% block scripts %}
-<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <script src="{{ url_for('static', filename='js/visor-3d.js') }}"></script>
 {% endblock %}

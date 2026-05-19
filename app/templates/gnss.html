@@ -5,25 +5,113 @@
 {% block content %}
 
 <section class="page-hero compact">
-    <p class="eyebrow">Velocidades geodésicas</p>
+    <p class="eyebrow">Geodesia física</p>
     <h1>Estaciones GNSS retenidas</h1>
     <p>
-        Resumen de estaciones GNSS usadas para el análisis, con velocidades medias
-        estimadas a partir de desplazamientos acumulados durante la serie temporal.
+        Las estaciones GNSS permiten observar cambios de posición en el tiempo.
+        En este visor se usan seis estaciones retenidas para estimar velocidades
+        medias y analizarlas de forma contextual junto con las anomalías gravimétricas.
     </p>
 </section>
 
-<section class="section">
-    <div class="alert alert-info">
-        <h3>Lectura metodológica</h3>
+<section class="section gnss-intro-section">
+    <div class="grid-3">
+        <article class="content-card">
+            <h2>¿Qué representa una estación GNSS?</h2>
+            <p>
+                Una estación GNSS registra posiciones a lo largo del tiempo.
+                A partir de su serie temporal se puede estimar una velocidad media
+                en las componentes Este, Norte y vertical.
+            </p>
+        </article>
+
+        <article class="content-card">
+            <h2>Marco de referencia</h2>
+            <p>
+                Las velocidades se interpretan en el marco
+                <strong>IGS20 / ITRF2020</strong>. Para la lectura sismotectónica
+                del visor se usan principalmente como referencia cinemática regional.
+            </p>
+        </article>
+
+        <article class="content-card">
+            <h2>Relación con gravedad</h2>
+            <p>
+                Las estaciones GNSS no “explican” directamente un punto gravimétrico.
+                La integración se realiza por superposición espacial y proximidad
+                contextual.
+            </p>
+        </article>
+    </div>
+</section>
+
+<section class="section gnss-cards-section">
+    <div class="section-header">
+        <p class="eyebrow">Estaciones analizadas</p>
+        <h2>Seis estaciones GNSS para el análisis regional</h2>
         <p>
-            Las velocidades se interpretan en el marco IGS20 / ITRF2020. Los vectores
-            residuales ayudan a observar diferencias relativas entre estaciones, sin
-            asumir deformación local definitiva.
+            Esta sección se alimenta desde <code>gnss_resumen_estaciones.csv</code>.
+            Las tarjetas muestran las velocidades absolutas estimadas a partir de
+            los desplazamientos acumulados durante la serie temporal.
         </p>
     </div>
 
-    <div id="gnssStations" class="station-list"></div>
+    <div id="gnssCards" class="gnss-grid">
+        <div class="content-card">
+            <p>Cargando estaciones GNSS...</p>
+        </div>
+    </div>
+</section>
+
+<section class="section gnss-table-section">
+    <div class="content-card">
+        <h2>Tabla de velocidades GNSS</h2>
+        <p>
+            Los valores se muestran en mm/año cuando están disponibles en la salida
+            exportada por MATLAB.
+        </p>
+
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Estación</th>
+                        <th>Latitud</th>
+                        <th>Longitud</th>
+                        <th>Vel. Este</th>
+                        <th>Vel. Norte</th>
+                        <th>Vel. Up</th>
+                        <th>Vel. horizontal</th>
+                    </tr>
+                </thead>
+
+                <tbody id="gnssTableBody">
+                    <tr>
+                        <td colspan="7">Cargando datos GNSS...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section class="section gnss-note-section">
+    <div class="content-card">
+        <h2>Lectura metodológica</h2>
+        <p>
+            Las velocidades GNSS se usan como apoyo para reconocer tendencias
+            cinemáticas regionales. Su integración con las anomalías gravimétricas
+            no implica una relación causal directa, sino una lectura contextual
+            por proximidad espacial.
+        </p>
+
+        <p class="method-note">
+            En el visor se trabaja únicamente con las estaciones retenidas para el
+            análisis regional. La interpretación de lineamientos o zonas de interés
+            estructural debe realizarse junto con información geológica y sismológica
+            complementaria.
+        </p>
+    </div>
 </section>
 
 {% endblock %}

@@ -2,33 +2,169 @@
 
 {% block title %}Marco conceptual · SismoTectoLab{% endblock %}
 
+{% block extra_head %}
+<script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]']]
+        },
+        svg: {
+            fontCache: 'global'
+        }
+    };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+{% endblock %}
+
 {% block content %}
 
-<section class="page-hero compact">
-    <p class="eyebrow">Fundamentos</p>
-    <h1>Marco conceptual</h1>
+<section class="conceptual-hero-v2">
+    <span class="eyebrow">Fundamentos físicos y geodésicos</span>
+    <h1>Relación entre anomalías gravimétricas, geodesia física, métricas y geodésicas</h1>
     <p>
-        Conceptos básicos para interpretar anomalías gravimétricas, gradiente horizontal
-        y velocidades GNSS dentro de una lectura sismotectónica regional.
+        Las anomalías gravimétricas permiten comparar el campo gravitatorio real de la Tierra
+        con un modelo teórico de referencia. En este visor se interpretan como manifestaciones
+        observables de variaciones del potencial de gravedad, la distribución de masa y la
+        geometría física de la Tierra.
     </p>
 </section>
 
-<section class="section two-column">
-    <div class="content-card">
-        <h2>Anomalía de Bouguer</h2>
+<section class="conceptual-grid compact-overview">
+    <article class="concept-card highlight-card">
+        <div class="concept-card-top">
+            <span class="mini-index">01</span>
+            <h2>Idea central</h2>
+        </div>
         <p>
-            La anomalía de Bouguer permite analizar variaciones del campo gravitatorio
-            considerando correcciones asociadas a la altura y al efecto de la masa
-            topográfica. En este visor se emplea para resaltar contrastes regionales
-            compatibles con cambios de densidad cortical.
+            La gravedad no se interpreta únicamente como un valor medido en superficie, sino como
+            un <strong>campo derivado de un potencial</strong>. Las anomalías gravimétricas expresan
+            diferencias entre el campo real y un modelo de referencia.
         </p>
-        <p class="method-note">
-            La anomalía de Bouguer se interpreta como una superficie regional de apoyo,
-            no como una medición puntual definitiva de estructuras tectónicas.
+    </article>
+
+    <article class="concept-card relation-card">
+        <div class="concept-card-top">
+            <span class="mini-index">02</span>
+            <h2>Relación general</h2>
+        </div>
+        <div class="flow-line compact-flow">
+            <span>Masa interna</span>
+            <strong>→</strong>
+            <span>Potencial</span>
+            <strong>→</strong>
+            <span>Campo de gravedad</span>
+            <strong>→</strong>
+            <span>Anomalía</span>
+        </div>
+        <p>
+            Esta secuencia permite entender por qué las anomalías de aire libre y Bouguer son
+            útiles para analizar contrastes regionales de densidad y posibles zonas de interés
+            estructural.
+        </p>
+    </article>
+</section>
+
+<section class="concept-section-v2">
+    <div class="concept-section-heading">
+        <span class="eyebrow">Geodesia física</span>
+        <h2>Potencial de gravedad y campo gravitatorio</h2>
+        <p>
+            El punto de partida es el potencial de gravedad. Este combina el potencial
+            gravitatorio producido por la masa terrestre y el potencial centrífugo asociado
+            a la rotación de la Tierra.
         </p>
     </div>
 
-    <figure class="image-card">
+    <div class="formula-grid two">
+        <article class="formula-card-v2">
+            <h3>Potencial total</h3>
+            <div class="formula-box">\[ W = V + \Phi \]</div>
+            <ul>
+                <li>\(W\): potencial total de gravedad.</li>
+                <li>\(V\): potencial gravitatorio de la masa terrestre.</li>
+                <li>\(\Phi\): potencial centrífugo por rotación terrestre.</li>
+            </ul>
+        </article>
+
+        <article class="formula-card-v2">
+            <h3>Gravedad como gradiente</h3>
+            <div class="formula-box">\[ \vec{g} = \nabla W \]</div>
+            <p>Según la convención usada, también puede escribirse:</p>
+            <div class="formula-box small">\[ \vec{g} = -\nabla W \]</div>
+            <p class="compact-note">
+                Lo clave es la idea física: el campo de gravedad se obtiene a partir de cambios
+                espaciales del potencial.
+            </p>
+        </article>
+    </div>
+</section>
+
+<section class="concept-section-v2">
+    <div class="concept-section-heading slim">
+        <span class="eyebrow">Anomalías gravimétricas</span>
+        <h2>Del campo observado a las anomalías</h2>
+        <p>
+            Las anomalías permiten comparar el campo real con un campo normal de referencia.
+            Esta comparación ayuda a interpretar variaciones asociadas al relieve, densidad,
+            estructuras corticales o contrastes regionales.
+        </p>
+    </div>
+
+    <div class="formula-grid three">
+        <article class="formula-card-v2">
+            <span class="topic-tag">1</span>
+            <h3>Anomalía gravimétrica</h3>
+            <div class="formula-box">\[ \Delta g = g_{obs} - \gamma \]</div>
+            <p>
+                Diferencia entre la gravedad observada y la gravedad normal calculada sobre
+                un modelo de referencia.
+            </p>
+        </article>
+
+        <article class="formula-card-v2">
+            <span class="topic-tag">2</span>
+            <h3>Anomalía de aire libre</h3>
+            <div class="formula-box">\[ \Delta g_{AL} = g_{obs} + C_{AL} - \gamma \]</div>
+            <div class="formula-box small">\[ C_{AL} \approx 0.3086H \]</div>
+            <p>
+                Corrige principalmente el efecto de la altura del punto de observación.
+            </p>
+        </article>
+
+        <article class="formula-card-v2 accent-border">
+            <span class="topic-tag">3</span>
+            <h3>Anomalía de Bouguer</h3>
+            <div class="formula-box">\[ \Delta g_B = \Delta g_{AL} - C_B \]</div>
+            <div class="formula-box small">\[ C_B = 2\pi G\rho H \]</div>
+            <p>
+                Además de corregir altura, busca retirar el efecto de la masa topográfica
+                superficial.
+            </p>
+        </article>
+    </div>
+</section>
+
+<section class="concept-split-v2">
+    <article class="concept-text-card">
+        <span class="eyebrow">Bouguer</span>
+        <h2>¿Por qué es importante para este visor?</h2>
+        <p>
+            La anomalía de Bouguer es una de las variables principales del análisis porque
+            permite resaltar contrastes gravimétricos compatibles con cambios de densidad
+            cortical. En SismoTectoLab se usa como superficie regional para apoyar la lectura
+            de posibles lineamientos o zonas de interés estructural.
+        </p>
+        <div class="question-strip">
+            <strong>Pregunta que responde:</strong>
+            <span>
+                Si elimino el efecto de la altura y parte de la masa topográfica superficial,
+                ¿qué variaciones de gravedad quedan asociadas a estructuras internas?
+            </span>
+        </div>
+    </article>
+
+    <figure class="visual-card compact-image-card">
         <img src="{{ url_for('static', filename='img/concepto_bouguer.png') }}" alt="Concepto de anomalía de Bouguer">
         <figcaption>
             Fuente: Geovirtual2, material educativo sobre anomalía de Bouguer.
@@ -36,24 +172,113 @@
     </figure>
 </section>
 
-<section class="section two-column reverse">
-    <div class="content-card">
-        <h2>GNSS y velocidades geodésicas</h2>
+<section class="concept-section-v2">
+    <div class="concept-section-heading slim">
+        <span class="eyebrow">Operadores diferenciales</span>
+        <h2>Nabla, Laplaciano y potencial perturbador</h2>
         <p>
-            Las estaciones GNSS registran cambios de posición en el tiempo. A partir
-            de la serie temporal de cada estación se pueden estimar velocidades en
-            las componentes Este, Norte y vertical.
-        </p>
-        <p>
-            En este proyecto se trabaja con desplazamientos acumulados durante la
-            serie temporal, transformados en velocidades medias expresadas en mm/año.
-        </p>
-        <p class="method-note">
-            Las velocidades se interpretan en el marco IGS20 / ITRF2020.
+            Las anomalías gravimétricas se conectan con el potencial perturbador y con operadores
+            diferenciales que describen cómo cambia el potencial en el espacio.
         </p>
     </div>
 
-    <figure class="image-card">
+    <div class="formula-grid three">
+        <article class="formula-card-v2 dark-formula">
+            <h3>Operador nabla</h3>
+            <div class="formula-box">\[ \vec{g} = \nabla W \]</div>
+            <p>
+                Describe el mayor cambio espacial del potencial. Permite pasar del potencial
+                al campo de gravedad.
+            </p>
+        </article>
+
+        <article class="formula-card-v2 dark-formula">
+            <h3>Ecuación de Poisson</h3>
+            <div class="formula-box">\[ \nabla^2 V = 4\pi G\rho \]</div>
+            <p>
+                Relaciona el potencial gravitatorio con la densidad de masa. Donde hay masa,
+                hay variación del potencial.
+            </p>
+        </article>
+
+        <article class="formula-card-v2 dark-formula">
+            <h3>Potencial perturbador</h3>
+            <div class="formula-box">\[ T = W - U \]</div>
+            <div class="formula-box small">\[ \Delta g \approx -\frac{\partial T}{\partial h} \]</div>
+            <p>
+                Compara el potencial real con el potencial normal del elipsoide de referencia.
+            </p>
+        </article>
+    </div>
+</section>
+
+<section class="concept-section-v2 compact-band">
+    <div class="band-content">
+        <div>
+            <span class="eyebrow">Geoide</span>
+            <h2>Superficies equipotenciales y ondulación geoidal</h2>
+            <p>
+                El geoide es una superficie donde el potencial de gravedad es constante. El
+                potencial perturbador también se relaciona con la ondulación geoidal mediante
+                la fórmula de Bruns.
+            </p>
+        </div>
+        <div class="band-formulas">
+            <div class="formula-box">\[ W = W_0 \]</div>
+            <div class="formula-box">\[ N = \frac{T}{\gamma} \]</div>
+        </div>
+    </div>
+</section>
+
+<section class="concept-section-v2">
+    <div class="concept-section-heading slim">
+        <span class="eyebrow">Geometría de la Tierra</span>
+        <h2>Métricas y geodésicas</h2>
+        <p>
+            La geodesia no solo estudia el campo físico de gravedad, sino también la geometría
+            usada para medir distancias, direcciones y trayectorias sobre superficies curvas.
+        </p>
+    </div>
+
+    <div class="formula-grid two">
+        <article class="formula-card-v2">
+            <h3>Relación con métricas</h3>
+            <div class="formula-box">\[ ds^2 = g_{ij}dx^i dx^j \]</div>
+            <p>
+                Una métrica define cómo se mide la distancia en un espacio determinado. En
+                una superficie curva, influye en el cálculo de gradientes, divergencias y
+                laplacianos.
+            </p>
+        </article>
+
+        <article class="formula-card-v2">
+            <h3>Relación con geodésicas</h3>
+            <div class="formula-box">\[ \frac{d^2x^k}{ds^2} + \Gamma^k_{ij}\frac{dx^i}{ds}\frac{dx^j}{ds}=0 \]</div>
+            <p>
+                Una geodésica es la trayectoria más corta o más “recta” dentro de una geometría
+                determinada, como el elipsoide terrestre.
+            </p>
+        </article>
+    </div>
+</section>
+
+<section class="concept-split-v2 reverse">
+    <article class="concept-text-card">
+        <span class="eyebrow">GNSS</span>
+        <h2>Velocidades geodésicas y deformación</h2>
+        <p>
+            Las estaciones GNSS permiten observar cambios de posición durante una serie temporal.
+            En este proyecto, los desplazamientos acumulados se transforman en velocidades medias
+            expresadas en mm/año dentro del marco IGS20 / ITRF2020.
+        </p>
+        <p>
+            Estas velocidades se integran con las anomalías gravimétricas de forma contextual,
+            por proximidad espacial, sin asumir una asociación directa entre punto gravimétrico
+            y estación GNSS.
+        </p>
+    </article>
+
+    <figure class="visual-card compact-image-card">
         <img src="{{ url_for('static', filename='img/concepto_gnss.png') }}" alt="Concepto de sistema GNSS">
         <figcaption>
             Fuente: Toposervis, material divulgativo sobre GNSS.
@@ -61,19 +286,43 @@
     </figure>
 </section>
 
-<section class="section">
-    <div class="content-card">
-        <h2>Gradiente horizontal de Bouguer</h2>
+<section class="concept-section-v2 caution-section">
+    <div class="concept-section-heading slim">
+        <span class="eyebrow">Aclaración conceptual</span>
+        <h2>¿Y la ecuación de onda?</h2>
         <p>
-            El gradiente horizontal representa qué tan rápido cambia la anomalía de
-            Bouguer en el espacio. Las zonas de alto gradiente pueden indicar contrastes
-            laterales importantes y se interpretan como posibles lineamientos
-            gravimétricos o áreas de interés estructural.
+            Las anomalías de Bouguer y de aire libre se estudian principalmente como fenómenos
+            estáticos o casi estáticos. Por eso se relacionan más directamente con ecuaciones
+            de potencial, como Poisson y Laplace, que con la ecuación de onda.
         </p>
-        <p class="warning-note">
-            En este visor no se declaran fallas activas. Se identifican zonas de interés
-            que requieren contraste con información geológica y sismológica adicional.
-        </p>
+    </div>
+
+    <div class="formula-grid two">
+        <article class="formula-card-v2">
+            <h3>Contexto estático</h3>
+            <div class="formula-box">\[ \nabla^2V = 4\pi G\rho \]</div>
+            <div class="formula-box small">\[ \nabla^2V = 0 \]</div>
+            <p>
+                Las ecuaciones de Poisson y Laplace describen el comportamiento del potencial
+                gravitatorio en presencia o ausencia de masa.
+            </p>
+        </article>
+
+        <article class="formula-card-v2 muted-card">
+            <h3>Contexto dinámico</h3>
+            <div class="formula-box">\[ \nabla^2\psi - \frac{1}{v^2}\frac{\partial^2\psi}{\partial t^2}=0 \]</div>
+            <p>
+                La ecuación de onda aparece cuando se estudian perturbaciones que se propagan
+                en el tiempo, como ondas sísmicas o fenómenos dinámicos.
+            </p>
+        </article>
+    </div>
+
+    <div class="final-concept-note">
+        <strong>En síntesis:</strong>
+        las anomalías gravimétricas se conectan principalmente con el potencial de gravedad,
+        sus derivadas espaciales y la geometría física de la Tierra. La ecuación de onda pertenece
+        a un contexto dinámico distinto.
     </div>
 </section>
 
